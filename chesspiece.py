@@ -7,6 +7,7 @@ class ChessPiece(object):
   """
   
   __metaclass__ = abc.ABCMeta
+  name = "Base Piece"
   
   # (x, y)
   current_position = None
@@ -21,6 +22,18 @@ class ChessPiece(object):
     a valid move for this chess piece.
     """
     pass
+
+
+class Pawn(object):
+  name = "Pawn"
+  
+  def is_valid(self, row, col):
+    if self.current_position[0] == (row, col):
+      return False
+    if row < self.current_position[0]:
+      return True
+    else:
+      return False
 
 
 class RookMixin(object):
@@ -39,6 +52,7 @@ class Rook(RookMixin, ChessPiece):
 
 
 class Knight(ChessPiece):
+  name = "Knight"
   
   def is_valid(self, row, col):
     if self.current_position == (row, col):
